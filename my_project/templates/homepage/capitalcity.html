@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>{{ title }}</h1>
+<strong>Hey Sam! here you can test your knowledge on countries and capitals!</strong>
+
+<form name="myform" action="." method="GET">{% csrf_token %}
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <p>Guess the capital city of</p>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <select id="app_select" name="country_name" class="form-control" onchange="app_list()" required=true>
+                            <option selected value="" disabled>country</option>
+                                {% for app in country_list %}
+                                <option value="{{ app }}">
+                                    {{ app|upper }}
+                                </option>
+                                {% endfor %}
+                        </select>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <input type="text" name="input_text" class="form-group" id="abc" placeholder="Capital city">
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default">Sure</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>     
+</form>
+    <a
+		style="margin-right: 0px;
+			margin-left: 150px;">
+			{% if messages %}
+				{% for message in messages %}
+					{{message}}
+				{% endfor %}
+			{% endif %}
+	</a>
+</body>
+</html>
